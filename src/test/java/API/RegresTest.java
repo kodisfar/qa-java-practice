@@ -1,5 +1,11 @@
 package API;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
@@ -9,12 +15,17 @@ import java.util.stream.Collectors;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
 
+@Epic("API Testing")
+@Feature("JSONPlaceholder API")
 public class RegresTest {
 
     private static final String URL = "https://jsonplaceholder.typicode.com";
 
     @Test
-    public void checkUsersTest() {
+    @Story("Get users")
+    @Description("Перевірка отримання списку користувачів та коректності їх основних даних")
+    @Severity(SeverityLevel.CRITICAL)
+    public void getUsersAndValidateData() {
 
         Specifications.installSpecification(
                 Specifications.requestSpec(URL),
@@ -47,7 +58,10 @@ public class RegresTest {
     }
 
     @Test
-    public void createPostTest() {
+    @Story("Create post")
+    @Description("Перевірка успішного створення нового поста та відповідності переданих даних")
+    @Severity(SeverityLevel.CRITICAL)
+    public void createPostSuccessfully() {
 
         Specifications.installSpecification(
                 Specifications.requestSpec(URL),
@@ -77,7 +91,10 @@ public class RegresTest {
     }
 
     @Test
-    public void getPostTest() {
+    @Story("Get post")
+    @Description("Перевірка отримання поста за його ідентифікатором та наявності основних даних")
+    @Severity(SeverityLevel.NORMAL)
+    public void getPostById() {
 
         Specifications.installSpecification(
                 Specifications.requestSpec(URL),
@@ -99,7 +116,10 @@ public class RegresTest {
     }
 
     @Test
-    public void sortedPostIdsTest() {
+    @Story("Validate post sorting")
+    @Description("Перевірка того, що ідентифікатори отриманих постів знаходяться у відсортованому порядку")
+    @Severity(SeverityLevel.NORMAL)
+    public void verifyPostIdsAreSorted() {
 
         Specifications.installSpecification(
                 Specifications.requestSpec(URL),
@@ -131,7 +151,10 @@ public class RegresTest {
     }
 
     @Test
-    public void deletePostTest() {
+    @Story("Delete post")
+    @Description("Перевірка виконання DELETE-запиту для видалення поста")
+    @Severity(SeverityLevel.NORMAL)
+    public void deletePostSuccessfully() {
 
         Specifications.installSpecification(
                 Specifications.requestSpec(URL),
