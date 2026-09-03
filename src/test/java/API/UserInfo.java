@@ -3,7 +3,7 @@ package API;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserData {
+public class UserInfo {
 
     private Integer id;
     private String name;
@@ -12,7 +12,7 @@ public class UserData {
     private String phone;
     private String website;
 
-    public UserData() {
+    public UserInfo() {
     }
 
     public Integer getId() {

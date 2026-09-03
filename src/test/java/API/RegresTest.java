@@ -25,14 +25,14 @@ public class RegresTest {
     @Story("Get users")
     @Description("Перевірка отримання списку користувачів та коректності їх основних даних")
     @Severity(SeverityLevel.CRITICAL)
-    public void getUsersAndValidateData() {
+    public void getUsersAndCheckData() {
 
         Specifications.installSpecification(
                 Specifications.requestSpec(URL),
                 Specifications.responseSpecOK200()
         );
 
-        List<UserData> users = given()
+        List<UserInfo> users = given()
                 .when()
                 .get("/users")
                 .then()
@@ -40,7 +40,7 @@ public class RegresTest {
                 .extract()
                 .body()
                 .jsonPath()
-                .getList("", UserData.class);
+                .getList("", UserInfo.class);
 
         assertFalse(users.isEmpty());
 
@@ -61,7 +61,7 @@ public class RegresTest {
     @Story("Create post")
     @Description("Перевірка успішного створення нового поста та відповідності переданих даних")
     @Severity(SeverityLevel.CRITICAL)
-    public void createPostSuccessfully() {
+    public void createNewPost() {
 
         Specifications.installSpecification(
                 Specifications.requestSpec(URL),
@@ -119,7 +119,7 @@ public class RegresTest {
     @Story("Validate post sorting")
     @Description("Перевірка того, що ідентифікатори отриманих постів знаходяться у відсортованому порядку")
     @Severity(SeverityLevel.NORMAL)
-    public void verifyPostIdsAreSorted() {
+    public void verifyPostIdsOrder() {
 
         Specifications.installSpecification(
                 Specifications.requestSpec(URL),
@@ -154,7 +154,7 @@ public class RegresTest {
     @Story("Delete post")
     @Description("Перевірка виконання DELETE-запиту для видалення поста")
     @Severity(SeverityLevel.NORMAL)
-    public void deletePostSuccessfully() {
+    public void deletePostById() {
 
         Specifications.installSpecification(
                 Specifications.requestSpec(URL),
